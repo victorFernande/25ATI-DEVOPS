@@ -1,1 +1,41 @@
+![fiap logo](/img/fiap_logo.jpg)
+
 # 25ATI-DEVOPS
+
+## 1. Criar 2 VMs chefclient e chefserver
+Setup Inicial, utilizando VMware, instalei 2 VMs de Ubuntu Server 18
+Uma chamei de chefclient e outra chefserver
+
+![SetupVM](/img/setupVM.jpg)
+
+
+Na VM chefclient instalamos o `Docker` e o `openssh` para deixar o mais portável possível desse setup.
+Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta  e vamos criar um arquivo alteraSSH.sh
+
+    touch alteraSSH.sh
+
+e preenche-lo com:
+ 
+
+
+    read -r -p "Voce tem certeza que quer trocar a porta SSH? [Y/N]" response
+    if [[ $response =~ ^([yY][eE][sS]|[yY])$ ]]
+      echo 
+      echo "Port 2269" >> /etc/ssh/sshd_config
+      echo "SSH Trocada para: 2269."
+      sshPort=$(grep "Port" /etc/ssh/sshd_config) | head -n 1
+      echo "Confirmando porta:  $sshPort"
+      read -p "Press [Enter] para Continuar ..."
+      /etc/init.d/ssh restart 
+    else 
+      sshPort=$(grep "Port" /etc/ssh/sshd_config) | head -n 1
+      echo "Porta Mantida em:  $sshPort"
+    fi
+
+
+e o Executaremos com:
+
+    chmod 700 ./alteraSSH.sh
+    sudo ./alteraSSH.sh 
+
+
