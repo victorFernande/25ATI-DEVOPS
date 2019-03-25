@@ -10,17 +10,19 @@ Uma chamei de **chefclient** e outra **chefserver**
 
 Ao subir o setup, foi atribuido via DHCP, um IP para cada VM
 
-**10.0.0.12 - Chef Client**
+**10.0.0.12 - Chef Server**
 
-**10.0.0.13 - Chef Server**
+**10.0.0.13 - Chef Client**
 
-acessaremos a Client pelo ip **10.0.0.13** porta **22**
+acessaremos a Server pelo ip **10.0.0.12** porta **22**
 
 ![putty22](/img/putty22.jpg)
 
 ## 2. Alterar a porta SSH dos servidores 
-### 2.1 SSH Client
+
 Na VM **chefclient** instalamos o `Docker`
+
+### 2.1 SSH Server
 
 E o `openssh` nas VMs **chefclient** e na **chefserver**.
 
@@ -64,8 +66,8 @@ então mudando a porta para **2269** a conexão funcionará.
 
 ![putty2269](/img/putty2269.jpg)
 
-### 2.2 SSH Servidor
-Agora precisaremos fazer a configuração do **SSH**  tambem na **chefserver**, para adiantar o processo, executaremos o seguinte comando:
+### 2.2 SSH Client
+Agora precisaremos fazer a configuração do **SSH**  tambem na **chefclient**, para adiantar o processo, executaremos o seguinte comando:
 
 
     wget https://raw.githubusercontent.com/victorFernande/25ATI-DEVOPS/master/alteraSSH.sh
