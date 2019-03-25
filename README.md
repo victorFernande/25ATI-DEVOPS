@@ -9,7 +9,7 @@ Uma chamei de chefclient e outra chefserver
 ![SetupVM](/img/setupVM.jpg)
 
 
-Na VM chefclient instalamos o `Docker` e o `openssh` para deixar o mais portável possível desse setup.
+Na VM chefclient instalamos o `Docker`, e o `openssh` nas VMs `chefclient` e na `chefserver`.
 Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta  e vamos criar um arquivo alteraSSH.sh
 
     touch alteraSSH.sh
