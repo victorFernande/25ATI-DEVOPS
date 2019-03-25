@@ -10,7 +10,7 @@ Uma chamei de chefclient e outra chefserver
 
 
 Na VM chefclient instalamos o `Docker`, e o `openssh` nas VMs `chefclient` e na `chefserver`.
-Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta  e vamos criar um arquivo alteraSSH.sh
+Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta e vamos criar um arquivo alteraSSH.sh
 
     touch alteraSSH.sh
 
@@ -32,13 +32,14 @@ e preenche-lo com:
     fi
 
 
-
 e o Executaremos com:
 
     chmod 700 ./alteraSSH.sh
     sudo ./alteraSSH.sh 
+    
+Após isso, sua sessão ainda estara fechada na porta 22, para testar é necessário sair da sessão, se tentar conectar a porta **22** a conexão será recusada, então mudando a porta para **2269** a conexão funcionará.    
 
-Na VM **chefclient** executaremos o seguinte comando
+Após isso na VM **chefclient** executaremos o seguinte comando
 
     wget https://omnitruck.chef.io/install.sh
     chmod 700 ./install.sh
