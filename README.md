@@ -137,7 +137,9 @@ Precisamos tambem Criar um Usuario para Administrar o **Chef Server**
     
     sudo chef-server-ctl user-create victorfernande Victor Fernandes victor.ribeirofernandes@gmail.com '123456' --filename ~/victorF.pem
 
-    
+Após essa criação do usuário, é necessãrio criar uma Organização 
+
+![ChefOrg](/img/ChefOrg.jpg)
 
 
 
