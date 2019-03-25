@@ -172,8 +172,21 @@ Depois disso, precisamos instalar a linguagem de programação Ruby, na qual o c
     sudo apt-get update
     sudo apt-get install -y ruby
 
+![ChefStarter](/img/ChefStarter.jpg)
 
+e depois em `proceed` 
 
+depois disso instale o `FileZilla Client` em Seu Computador
+
+    https://filezilla-project.org/download.php?type=client
+
+Após isso conecte no **Servidor do Chef** usando os campos 
+
+    Host: Endereço IP do Chef server
+    Username: chefserver
+    Password: fiap
+    Port: 2269
+   
 
 
     
