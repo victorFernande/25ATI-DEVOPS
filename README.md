@@ -9,6 +9,7 @@ Uma chamei de **chefclient** e outra **chefserver**
 ![SetupVM](/img/setupVM.jpg)
 
 
+## 2. Alterar a porta SSH dos servidores 
 Na VM chefclient instalamos o `Docker`, e o `openssh` nas VMs **chefclient** e na **chefserver**.
 Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta e vamos criar um arquivo alteraSSH.sh
 
@@ -44,14 +45,6 @@ e o Executaremos com:
     
 Após isso, sua sessão ainda estara fechada na porta 22, para testar é necessário sair da sessão, se tentar conectar a porta **22** a conexão será recusada, então mudando a porta para **2269** a conexão funcionará.    
 
-Após isso na VM **chefclient** executaremos o seguinte comando
-
-    wget https://omnitruck.chef.io/install.sh
-    chmod 700 ./install.sh
-    sudo ./install.sh
-
-
-
 Agora precisaremos fazer a configuração do **SSH**  tambem na **chefserver**, para adiantar o processo, executaremos o seguinte comando:
 
 
@@ -59,7 +52,17 @@ Agora precisaremos fazer a configuração do **SSH**  tambem na **chefserver**, 
     chmod 700 ./alteraSSH.sh
     sudo ./alteraSSH.sh    
 
-E depois faremos o donwload na VM **chefserver** o pacote do chef server
+
+## 3. Instalação do ChefClient
+Após isso na VM **chefclient** executaremos o seguinte comando
+
+    wget https://omnitruck.chef.io/install.sh
+    chmod 700 ./install.sh
+    sudo ./install.sh
+
+
+## 4. Instalação do ChefServer
+Agora faremos o donwload na VM **chefserver** o pacote do chef server
 
     wget https://packages.chef.io/files/stable/chef-server/12.17.33/ubuntu/16.04/chef-server-core_12.17.33-1_amd64.deb
 
