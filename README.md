@@ -8,7 +8,13 @@ Uma chamei de **chefclient** e outra **chefserver**
 
 ![SetupVM](/img/setupVM.jpg)
 
-acessaremos a Client pelo ip **10.0.0.14** porta **22**
+Ao subir o setup, foi atribuido via DHCP, um IP para cada VM
+
+**10.0.0.12 - Chef Client**
+
+**10.0.0.13 - Chef Server**
+
+acessaremos a Client pelo ip **10.0.0.13** porta **22**
 
 ![putty22](/img/putty22.jpg)
 
