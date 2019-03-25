@@ -8,6 +8,9 @@ Uma chamei de **chefclient** e outra **chefserver**
 
 ![SetupVM](/img/setupVM.jpg)
 
+acessaremos a Client pelo ip **10.0.0.14** porta **22**
+
+![putty22](/img/putty22.jpg)
 
 ## 2. Alterar a porta SSH dos servidores 
 Na VM chefclient instalamos o `Docker`, e o `openssh` nas VMs **chefclient** e na **chefserver**.
@@ -43,7 +46,13 @@ e o Executaremos com:
     chmod 700 ./alteraSSH.sh
     sudo ./alteraSSH.sh 
     
-Após isso, sua sessão ainda estara fechada na porta 22, para testar é necessário sair da sessão, se tentar conectar a porta **22** a conexão será recusada, então mudando a porta para **2269** a conexão funcionará.    
+Após isso, sua sessão ainda estara fechada na porta 22, para testar é necessário sair da sessão, se tentar conectar a porta **22** a conexão será recusada,
+
+![putty22error](/img/putty22error.jpg)
+
+então mudando a porta para **2269** a conexão funcionará.
+
+![putty2269](/img/putty2269.jpg)
 
 Agora precisaremos fazer a configuração do **SSH**  tambem na **chefserver**, para adiantar o processo, executaremos o seguinte comando:
 
