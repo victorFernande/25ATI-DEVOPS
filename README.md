@@ -84,5 +84,47 @@ Após o download execute esse comando para efetuar a instalação
 
     sudo dpkg -i chef-server-core_12.17.33-1_amd64.deb
     
+Para gerar os certificados do **Chefserver** é necessário o comando abaixo para atrelar ao IP do servidor 
+
+    echo api_fqdn "\""$(ifconfig ens33 | grep 'inet addr' | cut -d: -f2 | awk '{print $1}')"\"" | \
+    sudo tee --append /etc/opscode/chef-server.rb > /dev/null
+
+E em seguida execute execute o seguinte comando para configurar o servidor:
+    
+    sudo chef-server-ctl reconfigure
+    
+![ChefServerReconfigure](/img/ChefServerReconfigure.jpg)
+
+Este processo deverá demorar alguns minutos.
+
+Ao final, A saida do Comando é algo parecido com isso:    
+    
+    Chef Client finished, 495/1084 resources updated in 04 minutes 46 seconds
+    Chef Server Reconfigured!
+    
+
+## 4.1 Instalação de Modulos Adicionais 
+O primeiro módulo que iremos instalar é a interface web do servidor, **para garantir a instalação execute uma linha por vez**:
+    
+    sudo chef-server-ctl install chef-manage
+    
+    sudo chef-server-ctl reconfigure   
+    
+    sudo chef-manage-ctl reconfigure
+
+E em Seguida o Módulo de Relatorios **uma linha por vez**: 
+    
+    sudo chef-server-ctl install opscode-reporting
+    
+    sudo chef-server-ctl reconfigure
+    
+    sudo opscode-reporting-ctl reconfigure
+
+Precisamos Criar um Usuario para Administrar o **Chef Server**
+    
+    sudo chef-server-ctl user-create victorFernande Victor Fernandes victor.ribeirofernandes@gmail.com '123456' --filename ~/victor.pem
 
     
+
+
+
