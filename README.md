@@ -4,7 +4,7 @@
 
 ## 1. Criar 2 VMs chefclient e chefserver
 Setup Inicial, utilizando VMware, instalei 2 VMs de Ubuntu Server 18
-Uma chamei de chefclient e outra chefserver
+Uma chamei de **chefclient** e outra **chefserver**
 
 ![SetupVM](/img/setupVM.jpg)
 
@@ -13,6 +13,10 @@ Na VM chefclient instalamos o `Docker`, e o `openssh` nas VMs **chefclient** e n
 Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta e vamos criar um arquivo alteraSSH.sh
 
     touch alteraSSH.sh
+    
+O editor que iremos utilizar é o nano, para acessá-lo executamos 
+
+    nano alteraSSH.sh
 
 e preenche-lo com:
 
@@ -31,6 +35,7 @@ e preenche-lo com:
         echo "Porta Mantida em:  $sshPort"
     fi
 
+para salvar **Ctrl+O** e para sair **Ctrl+X**
 
 e o Executaremos com:
 
