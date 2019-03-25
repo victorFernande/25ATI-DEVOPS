@@ -3,8 +3,8 @@
 # 25ATI-DEVOPS
 
 ## 1. Criar 2 VMs chefclient e chefserver
-Setup Inicial, utilizando VMware, instalei 2 VMs de Ubuntu Server 18
-Uma chamei de **chefclient** e outra **chefserver**
+Setup Inicial, utilizando VMware, instalei 2 VMs de Ubuntu Server 16
+Uma chamamos de **chefclient** e outra **chefserver**
 
 ![SetupVM](/img/setupVM.jpg)
 
