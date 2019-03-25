@@ -128,9 +128,12 @@ E em Seguida o Módulo de Relatorios **uma linha por vez**:
     
     sudo opscode-reporting-ctl reconfigure
     
+    
+Após isso será possivel acessar via web o console do **Chef Server**
+
 ![ChefLogin](/img/ChefLogin.jpg)   
 
-Precisamos Criar um Usuario para Administrar o **Chef Server**
+Precisamos tambem Criar um Usuario para Administrar o **Chef Server**
     
     sudo chef-server-ctl user-create victorFernande Victor Fernandes victor.ribeirofernandes@gmail.com '123456' --filename ~/victor.pem
 
