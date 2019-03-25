@@ -135,7 +135,7 @@ Após isso será possivel acessar via web o console do **Chef Server**
 
 Precisamos tambem Criar um Usuario para Administrar o **Chef Server**
     
-    sudo chef-server-ctl user-create victorFernande Victor Fernandes victor.ribeirofernandes@gmail.com '123456' --filename ~/victor.pem
+    sudo chef-server-ctl user-create victorfernande Victor Fernandes victor.ribeirofernandes@gmail.com '123456' --filename ~/victorF.pem
 
     
 
