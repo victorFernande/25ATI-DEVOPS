@@ -141,5 +141,44 @@ Após essa criação do usuário, é necessãrio criar uma Organização
 
 ![ChefOrg](/img/ChefOrg.jpg)
 
+Vamos Chamá-la de **fiap2019** nos 2 campos, Full name e Short Name
+
+## 4.2 Instalação do Chef Development Kit
+
+É um pacote, que possui todas as ferramentas necessárias para trabalhar com o Chef.
+
+Primeiro temos que baixar o pacote do chef DK
+    
+    wget https://packages.chef.io/files/stable/chefdk/2.4.17/ubuntu/16.04/chefdk_2.4.17-1_amd64.deb 
+    
+Após o Download executaremos o seguinte comando.
+    
+    sudo dpkg -i chefdk_2.4.17-1_amd64.deb
+    
+Ele irá instalar o pacote na nossa VM Chef Server, O output do comando deverá ser semelhante a isso.    
+
+    chefserver@chefserver:~$ sudo dpkg -i chefdk_2.4.17-1_amd64.deb
+    Selecting previously unselected package chefdk.
+    (Reading database ... 217668 files and directories currently installed.)
+    Preparing to unpack chefdk_2.4.17-1_amd64.deb ...
+    Unpacking chefdk (2.4.17-1) ...
+    Setting up chefdk (2.4.17-1) ...
+    Thank you for installing Chef Development Kit!
+    chefserver@chefserver:~$
+
+
+Depois disso, precisamos instalar a linguagem de programação Ruby, na qual o chef à utiliza para a criação de **cookbooks, para aplicar nas maquinas Client do Chef**
+    
+    sudo apt-get update
+    sudo apt-get install -y ruby
+
+
+
+
+
+    
+
+
+
 
 
