@@ -127,6 +127,8 @@ E em Seguida o Módulo de Relatorios **uma linha por vez**:
     sudo chef-server-ctl reconfigure
     
     sudo opscode-reporting-ctl reconfigure
+    
+![ChefLogin](/img/ChefLogin.jpg)   
 
 Precisamos Criar um Usuario para Administrar o **Chef Server**
     
