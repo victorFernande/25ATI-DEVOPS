@@ -51,3 +51,12 @@ Após isso na VM **chefclient** executaremos o seguinte comando
     sudo ./install.sh
 
 
+
+Agora precisaremos fazer a configuração do **SSH**  tambem na **chefserver**, para adiantar o processo, executaremos o seguinte comando:
+
+
+    wget https://github.com/victorFernande/25ATI-DEVOPS/blob/master/alteraSSH.sh
+    chmod 700 ./alteraSSH.sh
+    sudo ./alteraSSH.sh    
+
+
