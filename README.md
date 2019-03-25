@@ -59,4 +59,13 @@ Agora precisaremos fazer a configuração do **SSH**  tambem na **chefserver**, 
     chmod 700 ./alteraSSH.sh
     sudo ./alteraSSH.sh    
 
+E depois faremos o donwload na VM **chefserver** o pacote do chef server
 
+    wget https://packages.chef.io/files/stable/chef-server/12.17.33/ubuntu/16.04/chef-server-core_12.17.33-1_amd64.deb
+
+Após o download execute esse comando para efetuar a instalação
+
+    sudo dpkg -i chef-server-core_12.17.33-1_amd64.deb
+    
+
+    
