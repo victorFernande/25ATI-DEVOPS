@@ -38,7 +38,7 @@ e o Executaremos com:
     chmod 700 ./alteraSSH.sh
     sudo ./alteraSSH.sh 
 
-Na VM chefclient executaremos o seguinte comando
+Na VM **chefclient** executaremos o seguinte comando
 
     wget https://omnitruck.chef.io/install.sh
     chmod 700 ./install.sh
