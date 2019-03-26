@@ -111,7 +111,7 @@ Ao final, A saida do Comando é algo parecido com isso:
     Chef Server Reconfigured!
     
 
-## 4.1 Instalação de Modulos Adicionais 
+### 4.1 Instalação de Modulos Adicionais 
 O primeiro módulo que iremos instalar é a interface web do servidor, **para garantir a instalação execute uma linha por vez**:
     
     sudo chef-server-ctl install chef-manage
@@ -143,7 +143,7 @@ Após essa criação do usuário, é necessãrio criar uma Organização
 
 Vamos Chamá-la de **fiap2019** nos 2 campos, Full name e Short Name
 
-## 4.2 Instalação do Chef Development Kit
+### 4.2 Instalação do Chef Development Kit
 
 É um pacote, que possui todas as ferramentas necessárias para trabalhar com o Chef.
 
@@ -180,7 +180,7 @@ depois disso instale o `FileZilla Client` em Seu Computador
 
     https://filezilla-project.org/download.php?type=client
 
-Após isso conecte no **Servidor do Chef** usando os campos 
+Após isso conecte no **Servidor do Chef** usando os campos com o protocolo **SFTP(SSH File Transfer Protocol)**. O SFTP é preferível ao FTP, devido aos seus recursos de segurança. e A capacidade de se transferir aquivos via SSH 
 
     Host: Endereço IP do Chef server
     Username: chefserver
@@ -189,9 +189,54 @@ Após isso conecte no **Servidor do Chef** usando os campos
    
 ![Filezilla](/img/Filezilla.jpg)
 
+Após isso, clicamos 2 vezes no arquivo chef-starter.zip que acabamos de baixar e ele é enviado ao servidor.
+
+Então descompactamos o arquivo com 
+
+    unzip chef-starter.zip
     
+Depois disso, uma pasta será criada e a acessamos com 
+    
+    cd chef-repo/
+    
+Precisamos instalar alguns certificados no servidor, por isso utilizaremos uma ferramenta do Chef chamada **Knife** 
+
+    knife ssl fetch
+    
+O output do comando será semelhante à:
+
+    WARNING: Certificates from 10.0.0.12 will be fetched and placed in your trusted_cert
+    directory (/home/chefserver/chef-repo/.chef/trusted_certs).
+
+    Knife has no means to verify these are the correct certificates. You should
+    verify the authenticity of these certificates after downloading.
+
+    Adding certificate for 10_0_0_12 in /home/chefserver/chef-repo/.chef/trusted_certs/10_0_0_12.crt
+    
+    
+## 5 Criando Cookbook's 
+
+### 5.1 Instalando Apache 
+
+Acessaremos o **chefserver** e acessaremos o diretorio `chef-repo` e executaremos o seguinte comando 
+
+     chef generate cookbook cookbooks/InstalaApache
+     
+Depois, para acessar nossa receita, executaremos:
+
+    cd cookbooks/InstalaApache
+
+e Vamos alterar o arquivo **cookbooks/InstalaApache/recipes/default.rb** 
 
 
+    package 'apache2' do
+        action :install
+    end
+
+    service 'apache2' do
+        action [:enable,:start]
+        supports :reload => true
+    end
 
 
 
