@@ -218,40 +218,31 @@ O output do comando será semelhante à:
 
 ### 5.1 Server Chef
 
-    
-    sudo adduser ctobruno
-    
-Output:
-    
-    Adding user `ctobruno' ...
-    Adding new group `ctobruno' (1001) ...
-    Adding new user `ctobruno' (1001) with group `ctobruno' ...
-    Creating home directory `/home/ctobruno' ...
-    Copying files from `/etc/skel' ...
-    
-Solicitando senha: `fiap` 2 vezes     
-    
-    Enter new UNIX password:
-    Retype new UNIX password:
-    passwd: password updated successfully
-    Changing the user information for ctobruno
-    
-Precione `enter`
+criando usuario ctobruno com o mesmo privilegio de root
+   
+    sudo useradd -ou 0 -g 0 ctobruno
 
-    Enter the new value, or press ENTER for the default
-        Full Name []:
-        Room Number []:
-        Work Phone []:
-        Home Phone []:
-        Other []:
+Setando senha ao usuário **ctobruno** -> **fiap**
     
-Precione `Y` e `enter`
+    sudo passwd ctobruno
 
-    Is the information correct? [Y/n] y
+Adicionando ao grupo root 
 
-Adicionando ao grupo admin 
+    sudo usermod -aG root ctobruno    
+    
+### 5.2 Server client
 
-    sudo usermod -aG sudo ctobruno
+criando usuario ctobruno com o mesmo privilegio de root
+   
+    sudo useradd -ou 0 -g 0 ctobruno
+
+Setando senha ao usuário **ctobruno** -> **fiap**
+    
+    sudo passwd ctobruno
+
+Adicionando ao grupo root 
+
+    sudo usermod -aG root ctobruno    
 
 ## 6 Criando Cookbook's 
 
