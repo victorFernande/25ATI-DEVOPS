@@ -214,9 +214,48 @@ O output do comando será semelhante à:
     Adding certificate for 10_0_0_12 in /home/chefserver/chef-repo/.chef/trusted_certs/10_0_0_12.crt
     
     
-## 5 Criando Cookbook's 
+## 5 Criando User Privilegiado
 
-### 5.1 Instalando Apache 
+### 5.1 Server Chef
+
+    
+    sudo adduser ctobruno
+    
+Output:
+    
+    Adding user `ctobruno' ...
+    Adding new group `ctobruno' (1001) ...
+    Adding new user `ctobruno' (1001) with group `ctobruno' ...
+    Creating home directory `/home/ctobruno' ...
+    Copying files from `/etc/skel' ...
+    
+Solicitando senha: `fiap` 2 vezes     
+    
+    Enter new UNIX password:
+    Retype new UNIX password:
+    passwd: password updated successfully
+    Changing the user information for ctobruno
+    
+Precione `enter`
+
+    Enter the new value, or press ENTER for the default
+        Full Name []:
+        Room Number []:
+        Work Phone []:
+        Home Phone []:
+        Other []:
+    
+Precione `Y` e `enter`
+
+    Is the information correct? [Y/n] y
+
+Adicionando ao grupo admin 
+
+    sudo usermod -aG sudo ctobruno
+
+## 6 Criando Cookbook's 
+
+### 6.1 Instalando Apache 
 
 Acessaremos o **chefserver** e acessaremos o diretorio `chef-repo` e executaremos o seguinte comando 
 
@@ -226,7 +265,7 @@ Depois, para acessar nossa receita, executaremos:
 
     cd cookbooks/InstalaApache
 
-e Vamos alterar o arquivo **cookbooks/InstalaApache/recipes/default.rb** 
+e Vamos alterar o arquivo com o **nano cookbooks/InstalaApache/recipes/default.rb** 
 
 
     package 'apache2' do
@@ -238,5 +277,9 @@ e Vamos alterar o arquivo **cookbooks/InstalaApache/recipes/default.rb**
         supports :reload => true
     end
 
+para salvar **Ctrl+O** e para sair **Ctrl+X**
 
+Depois Faremos upload com esse comando 
 
+    knife upload cookbooks/InstalaApache
+    knife bootstrap 10.0.0.13:2269 -x execUser -P fiap -N Client
