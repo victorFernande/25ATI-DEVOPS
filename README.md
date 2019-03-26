@@ -187,7 +187,7 @@ Após isso conecte no **Servidor do Chef** usando os campos
     Password: fiap
     Port: 2269
    
-![filezilla](/img/filezilla.jpg)
+![Filezilla](/img/Filezilla.jpg)
 
     
 
