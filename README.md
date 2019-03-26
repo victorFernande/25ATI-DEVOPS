@@ -244,6 +244,17 @@ Setando senha ao usuário **ctobruno** -> **fiap**
 Adicionando ao grupo root 
 
     sudo usermod -aG root ctobruno    
+    
+    
+ Após isso force o sincronismo do chef client com o chef server utilzando o bootstrap do knife
+ 
+    knife bootstrap 10.0.0.13:2269 -x ctobruno -P fiap -N Client
+
+![bootstrapSync](/img/bootstrapSync.jpg)
+
+então na interface Web aparecerá o **chefclient !!!!**
+
+![clientSync](/img/clientSync.jpg)
 
 ## 6 Criando Cookbook's 
 
@@ -274,4 +285,4 @@ para salvar **Ctrl+O** e para sair **Ctrl+X**
 Depois Faremos upload com esse comando 
 
     knife upload cookbooks/InstalaApache
-    knife bootstrap 10.0.0.13:2269 -x execUser -P fiap -N Client
+    
