@@ -20,8 +20,6 @@ acessaremos a Server pelo ip **10.0.0.12** porta **22**
 
 ## 2. Alterar a porta SSH dos servidores 
 
-Na VM **chefclient** instalamos o `Docker`
-
 ### 2.1 SSH Server
 
 E o `openssh` nas VMs **chefclient** e na **chefserver**.
@@ -292,12 +290,12 @@ Precisamos alterar o Runlist para Selecionar a receita a ser executada pelo clie
 
 ![task](/img/task.jpg)
 
-
-    
 Na maquina **chefClient** rodamos o seguinte comando, que num cenário real, ficaria habilitado no cron do servidor Client para que por exemplo de 5 em 5 minutos, a maquina cliente buscaria receitas novas para serem executadas.
 
     chef-client
     
-Ao fazer isso, a maquina client rodara a tarefa a ser executada. 
+Ao fazer isso, a maquina client rodará a tarefa a ser executada. 
+
+
 
 
