@@ -286,3 +286,14 @@ Depois Faremos upload com esse comando
 
     knife upload cookbooks/InstalaApache
     
+Precisamos alterar o Runlist para Selecionar a receita a ser executada pelo cliente 
+
+![recipe](/img/recipe.jpg)
+    
+Na maquina **chefClient** rodamos o seguinte comando, que num cenário real, ficaria habilitado no cron do servidor Client para que por exemplo de 5 em 5 minutos, a maquina cliente buscaria receitas novas para serem executadas.
+
+    chef-client
+    
+Ao fazer isso, a maquina client rodara a tarefa a ser executada. 
+
+![task](/img/task.jpg)
