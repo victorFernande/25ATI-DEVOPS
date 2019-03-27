@@ -104,5 +104,14 @@ sudo echo "
 
 a2ensite 000-default.conf
 
+cd /var/www
+sudo chmod 775 html
+sudo chgrp www-data html
+sudo chmod g+s html
+
+sudo chgrp -R www-data html
+find . -type f -exec chmod 664 {} \;
+find . -type d -exec chmod 775 {} \;
+
 service apache2 restart
 
