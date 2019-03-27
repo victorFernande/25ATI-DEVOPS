@@ -22,7 +22,9 @@ acessaremos a Server pelo ip **10.0.0.12** porta **22**
 
 ### 2.1 SSH Server
 
-E o `openssh` nas VMs **chefclient** e na **chefserver**.
+Instalamos  o `openssh` nas VMs **chefclient** e na **chefserver**.
+
+    apt-get install openssh-server
 
 Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta e vamos criar um arquivo **alteraSSH.sh**
 
@@ -294,7 +296,9 @@ Na maquina **chefClient** rodamos o seguinte comando, que num cenário real, fic
 
     chef-client
     
-Ao fazer isso, a maquina client rodará a tarefa a ser executada. 
+Ao fazer isso, a maquina client rodará a tarefa a ser executada e o Apache será instalado. acessando o ip do client voce verá que o apache esta instalado.
+
+![apache](/img/apache.jpg)
 
 
 
