@@ -1,7 +1,4 @@
 #!/bin/bash
-
-
-
 sudo mkdir -p /var/www/html/qa.25ati.com
 sudo mkdir -p /var/www/html/prod.25ati.com
 sudo mkdir -p /var/www/html/dev.25ati.com
@@ -74,7 +71,7 @@ echo "
     </Directory>
 </VirtualHost>
 
-" >> /etc/apache2/sites-enabled/25ati.conf
+" >> /etc/apache2/sites-enabled/000-default.conf
 
 
 
@@ -89,7 +86,7 @@ echo "
     </Directory>
 </VirtualHost>
 
-" >> /etc/apache2/sites-enabled/25ati.conf
+" >> /etc/apache2/sites-enabled/000-default.conf
 
 
 echo "
@@ -103,10 +100,9 @@ echo "
     </Directory>
 </VirtualHost>
 
-" >> /etc/apache2/sites-enabled/25ati.conf
+" >> /etc/apache2/sites-enabled/000-default.conf
 
-a2ensite 25ati.conf
-a2dissite 000-default.conf
+a2ensite 000-default.conf
 
 service apache2 restart
 
