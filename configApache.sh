@@ -57,15 +57,15 @@ echo "
 
 ##################################################################
 
-echo "" > /etc/apache2/sites-enabled/000-default.conf
+sudo echo "" > /etc/apache2/sites-enabled/000-default.conf
 
 
-echo "
+sudo echo "
 <VirtualHost *:80>
     DocumentRoot /www/html/qa.25ati.com
     ServerName qa.25ati.com " >> /etc/apache2/sites-available/000-default.conf
-    echo "<Directory \"/www/html/qa.25ati.com\">" >> /etc/apache2/sites-available/000-default.conf
-    echo "  Options Indexes FollowSymLinks
+    sudo echo "<Directory \"/www/html/qa.25ati.com\">" >> /etc/apache2/sites-available/000-default.conf
+    sudo echo "  Options Indexes FollowSymLinks
 		AllowOverride None
 		Require all granted
     </Directory>
@@ -75,12 +75,12 @@ echo "
 
 
 
-echo "
+sudo echo "
 <VirtualHost *:80>
     DocumentRoot /www/html/dev.25ati.com
     ServerName dev.25ati.com " >> /etc/apache2/sites-available/000-default.conf
-    echo "<Directory \"/www/html/dev.25ati.com\">" >> /etc/apache2/sites-available/000-default.conf
-    echo "  Options Indexes FollowSymLinks
+    sudo echo "<Directory \"/www/html/dev.25ati.com\">" >> /etc/apache2/sites-available/000-default.conf
+    sudo echo "  Options Indexes FollowSymLinks
 		AllowOverride None
 		Require all granted
     </Directory>
@@ -89,12 +89,12 @@ echo "
 " >> /etc/apache2/sites-enabled/000-default.conf
 
 
-echo "
+sudo echo "
 <VirtualHost *:80>
     DocumentRoot /www/html/prod.25ati.com
     ServerName prod.25ati.com " >> /etc/apache2/sites-available/000-default.conf
-    echo "<Directory \"/www/html/prod.25ati.com\">" >> /etc/apache2/sites-available/000-default.conf
-    echo "  Options Indexes FollowSymLinks
+    sudo echo "<Directory \"/www/html/prod.25ati.com\">" >> /etc/apache2/sites-available/000-default.conf
+    sudo echo "  Options Indexes FollowSymLinks
 		AllowOverride None
 		Require all granted
     </Directory>
