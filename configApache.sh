@@ -2,4 +2,4 @@
 
 touch /tmp/test.txt
 
-echo foi > test.txt
+echo "foi" > test.txt
