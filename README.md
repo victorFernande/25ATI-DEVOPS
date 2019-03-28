@@ -14,10 +14,6 @@ Ao subir o setup, foi atribuido via DHCP, um IP para cada VM
 
 **10.0.0.13 - Chef Client**
 
-acessaremos a Server pelo ip **10.0.0.12** porta **22**
-
-![putty22](/img/putty22.jpg)
-
 ## 2. Alterar a porta SSH dos servidores 
 
 ### 2.1 SSH Server
@@ -26,7 +22,11 @@ Instalamos  o `openssh` nas VMs **chefclient** e na **chefserver**.
 
     apt-get install openssh-server
 
-Por padrão o SSH é atribuído a porta 22, acessamos esse setup inicial por essa porta e vamos criar um arquivo **alteraSSH.sh**
+Por padrão o SSH é atribuído a porta 22, acessaremos a Server pelo ip **10.0.0.12** porta **22**
+
+![putty22](/img/putty22.jpg)
+
+acessamos esse setup inicial por essa porta e vamos criar um arquivo **alteraSSH.sh**
 
     touch alteraSSH.sh
     
@@ -69,7 +69,6 @@ então mudando a porta para **2269** a conexão funcionará.
 
 ### 2.2 SSH Client
 Agora precisaremos fazer a configuração do **SSH**  tambem na **chefclient**, para adiantar o processo, executaremos o seguinte comando:
-
 
     wget https://raw.githubusercontent.com/victorFernande/25ATI-DEVOPS/master/alteraSSH.sh
     chmod 700 ./alteraSSH.sh
@@ -138,7 +137,7 @@ Precisamos tambem Criar um Usuario para Administrar o **Chef Server**
     
     sudo chef-server-ctl user-create victorfernande Victor Fernandes victor.ribeirofernandes@gmail.com '123456' --filename ~/victorF.pem
 
-Após essa criação do usuário, é necessãrio criar uma Organização 
+Após essa criação do usuário, é necessário criar uma Organização 
 
 ![ChefOrg](/img/ChefOrg.jpg)
 
@@ -245,8 +244,7 @@ Adicionando ao grupo root
 
     sudo usermod -aG root ctobruno    
     
-    
- Após isso, **Na VM ChefServer** force o sincronismo do chef client com o chef server utilzando o bootstrap do knife
+Após isso, **Na VM ChefServer** force o sincronismo do chef client com o chef server utilzando o bootstrap do knife
  
     knife bootstrap 10.0.0.13:2269 -x ctobruno -P fiap -N Client
 
