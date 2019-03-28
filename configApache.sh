@@ -1,4 +1,4 @@
-
+#!/bin/bash
 
 sudo touch /etc/apache2/sites-available/qa.conf
 sudo touch /etc/apache2/sites-available/dev.conf
