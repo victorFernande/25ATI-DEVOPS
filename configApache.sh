@@ -40,8 +40,7 @@ sudo echo "
 </VirtualHost>
 " > /etc/apache2/sites-available/prod.conf
 
-
-
+#######################################################################################
 
 sudo echo "
 <html>
@@ -63,7 +62,7 @@ echo "
 <html>
 	<head>
 	<title>DEV Site</title>
-	</head> 	" > /var/www/html/dev.25ati.com/index.html
+	</head> " > /var/www/html/dev.25ati.com/index.html
 	echo "<body style=\"background-color:##D6EAF8;\"> " >> /var/www/html/dev.25ati.com/index.html
 	echo "	<h1>DEV Site</h1>
 		RM330586 - Daniel Asato</br>
@@ -73,7 +72,7 @@ echo "
 		RM331513 - Victor Fernandes </br>
 	</body>
 </html>
-" > /var/www/html/dev.25ati.com/index.html
+" >> /var/www/html/dev.25ati.com/index.html
 
 echo "
 <html>
@@ -89,7 +88,7 @@ echo "
 		RM331513 - Victor Fernandes </br>
 	</body>
 </html>
-" > /var/www/html/prod.25ati.com/index.html
+" >> /var/www/html/prod.25ati.com/index.html
 
 
 a2ensite qa.conf
