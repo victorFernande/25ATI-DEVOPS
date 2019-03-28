@@ -310,7 +310,7 @@ Depois, para acessar nossa receita, executaremos:
 
     cd cookbooks/configApache
 
-e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb** 
+e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb**
 
 
     require 'open-uri'
@@ -329,13 +329,52 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
 
 para salvar **Ctrl+O** e para sair **Ctrl+X**
 
+Essa receita baixa um codigo shell script desse git, aplica permissão e o executa, configurando o apache e criando virtualhosts e tambem criando as paginas html. 
+
 Depois Faremos upload com esse comando 
 
     knife upload cookbooks/configApache
     
-Precisamos alterar o Runlist para Selecionar a receita a ser executada pelo cliente
+Precisamos alterar o Runlist para Selecionar a receita a ser executada pelo cliente.
+
+![task1](/img/task1.jpg)
+
+Voltamos a maquina **ChefClient** e executamos o codigo de configuração e criação das paginas no apache.
+
+    sudo chef-client
+    
+ ao terminar, o apache estará configurado, e acessivel pelos sites
+ 
+    qa.25ati.com
+    dev.25ati.com
+    prod.25ati.com
+    
+ ![SetupVM](/img/setupVM.jpg)
+ 
+ 
+Para testar se as configurações estão corretas, usarei o windows da maquina host para acessar esses sites, mas primeiro é necessario alterar o arquivo de hosts da maquina, então 
+ 
+ ![notepadAdmin](/img/notepadAdmin.jpg)
+ 
+ e abrir o arquivo de hosts localizado em :
+ 
+    C:\Windows\System32\drivers\etc\hosts
+ 
+ 
+e adicionar as seguintes linhas 
+
+    10.0.0.13		qa.25ati.com
+    10.0.0.13		dev.25ati.com
+    10.0.0.13		prod.25ati.com
+
+Após isso, ao acessar os sites no navegador:
+
+![qa](/img/qa.jpg)
+![dev](/img/dev.jpg)
+![prod](/img/prod.jpg)
 
 
+Fim !
 
 
 
