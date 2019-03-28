@@ -1,4 +1,3 @@
-#!/bin/bash
 
 sudo touch /etc/apache2/sites-available/qa.conf
 sudo touch /etc/apache2/sites-available/dev.conf
@@ -40,7 +39,8 @@ sudo echo "
 </VirtualHost>
 " > /etc/apache2/sites-available/prod.conf
 
-#######################################################################################
+
+
 
 sudo echo "
 <html>
@@ -58,13 +58,15 @@ sudo echo "
 </html>
 " >> /var/www/html/qa.25ati.com/index.html
 
-echo "
+
+
+sudo echo "
 <html>
 	<head>
-	<title>DEV Site</title>
-	</head> " > /var/www/html/dev.25ati.com/index.html
-	echo "<body style=\"background-color:##D6EAF8;\"> " >> /var/www/html/dev.25ati.com/index.html
-	echo "	<h1>DEV Site</h1>
+		<title>dev Site</title>
+	</head>	" > /var/www/html/dev.25ati.com/index.html
+		echo "<body style=\"background-color:#DAF7A6;\"> " >> /var/www/html/dev.25ati.com/index.html
+		echo "<h1>dev Site</h1>
 		RM330586 - Daniel Asato</br>
 		RM330459 - Danielle Silveira</br>
 		RM330460 - Danilo Albuquerque Maciel</br>
@@ -74,13 +76,15 @@ echo "
 </html>
 " >> /var/www/html/dev.25ati.com/index.html
 
-echo "
+
+
+sudo echo "
 <html>
 	<head>
-	<title>PROD Site</title>
-	</head> " > /var/www/html/prod.25ati.com/index.html
-	echo "<body style=\"background-color:##FDEBD0;\">  " >> /var/www/html/prod.25ati.com/index.html
-	echo "	<h1>PROD Site</h1>
+		<title>Prod Site</title>
+	</head>	" > /var/www/html/prod.25ati.com/index.html
+		echo "<body style=\"background-color:#DAF7A6;\"> " >> /var/www/html/prod.25ati.com/index.html
+		echo "<h1>prod Site</h1>
 		RM330586 - Daniel Asato</br>
 		RM330459 - Danielle Silveira</br>
 		RM330460 - Danilo Albuquerque Maciel</br>
@@ -89,6 +93,7 @@ echo "
 	</body>
 </html>
 " >> /var/www/html/prod.25ati.com/index.html
+
 
 
 a2ensite qa.conf
