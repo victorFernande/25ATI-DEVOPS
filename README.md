@@ -246,13 +246,13 @@ Adicionando ao grupo root
     sudo usermod -aG root ctobruno    
     
     
- Após isso force o sincronismo do chef client com o chef server utilzando o bootstrap do knife
+ Após isso, **Na VM ChefServer** force o sincronismo do chef client com o chef server utilzando o bootstrap do knife
  
     knife bootstrap 10.0.0.13:2269 -x ctobruno -P fiap -N Client
 
 ![bootstrapSync](/img/bootstrapSync.jpg)
 
-então na interface Web aparecerá o **chefclient !!!!**
+então na interface Web do Chef (10.0.0.12) aparecerá o **chefclient !!!!**
 
 ![clientSync](/img/clientSync.jpg)
 
@@ -283,7 +283,7 @@ e Vamos alterar o arquivo com o **nano cookbooks/InstalaApache/recipes/default.r
 para salvar **Ctrl+O** e para sair **Ctrl+X**
 
 Depois Faremos upload com esse comando 
-
+    
     knife upload cookbooks/InstalaApache
     
 Precisamos alterar o Runlist para Selecionar a receita a ser executada pelo cliente 
@@ -299,6 +299,42 @@ Na maquina **chefClient** rodamos o seguinte comando, que num cenário real, fic
 Ao fazer isso, a maquina client rodará a tarefa a ser executada e o Apache será instalado. acessando o ip do client voce verá que o apache esta instalado.
 
 ![apache](/img/apache.jpg)
+
+## 6.2 Configurando o Apache
+
+Agora precisamos configurar o apache. Acessaremos o **chefserver** e acessaremos o diretorio `chef-repo` e executaremos o seguinte comando 
+
+     chef generate cookbook cookbooks/configApache
+     
+Depois, para acessar nossa receita, executaremos:
+
+    cd cookbooks/configApache
+
+e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb** 
+
+
+    require 'open-uri'
+
+    File.open("/tmp/configApache.sh", "wb") do |saved_file|
+            open("https://raw.githubusercontent.com/victorFernande/25ATI-DEVOPS/master/configApache.sh", "rb") do |read_$
+            saved_file.write(read_file.read)
+        end
+    end
+
+    File.chmod(0777, "/tmp/configApache.sh")
+
+    bash "configApache.sh" do
+        code "source /tmp/configApache.sh"
+    end
+
+para salvar **Ctrl+O** e para sair **Ctrl+X**
+
+Depois Faremos upload com esse comando 
+
+    knife upload cookbooks/configApache
+    
+Precisamos alterar o Runlist para Selecionar a receita a ser executada pelo cliente
+
 
 
 
