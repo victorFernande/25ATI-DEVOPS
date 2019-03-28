@@ -1,4 +1,5 @@
 
+
 sudo touch /etc/apache2/sites-available/qa.conf
 sudo touch /etc/apache2/sites-available/dev.conf
 sudo touch /etc/apache2/sites-available/prod.conf
@@ -65,7 +66,7 @@ sudo echo "
 	<head>
 		<title>dev Site</title>
 	</head>	" > /var/www/html/dev.25ati.com/index.html
-		echo "<body style=\"background-color:#DAF7A6;\"> " >> /var/www/html/dev.25ati.com/index.html
+		echo "<body style=\"background-color:#D6EAF8;\"> " >> /var/www/html/dev.25ati.com/index.html
 		echo "<h1>dev Site</h1>
 		RM330586 - Daniel Asato</br>
 		RM330459 - Danielle Silveira</br>
@@ -83,7 +84,7 @@ sudo echo "
 	<head>
 		<title>Prod Site</title>
 	</head>	" > /var/www/html/prod.25ati.com/index.html
-		echo "<body style=\"background-color:#DAF7A6;\"> " >> /var/www/html/prod.25ati.com/index.html
+		echo "<body style=\"background-color:#FDEBD0;\"> " >> /var/www/html/prod.25ati.com/index.html
 		echo "<h1>prod Site</h1>
 		RM330586 - Daniel Asato</br>
 		RM330459 - Danielle Silveira</br>
