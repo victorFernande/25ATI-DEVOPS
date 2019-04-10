@@ -310,7 +310,6 @@ Depois, para acessar nossa receita, executaremos:
 
 e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb**
 
-
     qaFile = []
     qaFile << "<VirtualHost *:80>"
         qaFile << "    ServerName qa.25ati.com"
@@ -318,7 +317,6 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
     qaFile << "    DocumentRoot /var/www/html/qa.25ati.com"
     qaFile << "    LogLevel warn"
     qaFile << "</VirtualHost>"
-    
     out_file = File.new("/etc/apache2/sites-available/qa.conf", "w")
     out_file.puts(qaFile)
     out_file.close
@@ -330,10 +328,10 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
     prodFile << "    DocumentRoot /var/www/html/prod.25ati.com"
     prodFile << "    LogLevel warn"
     prodFile << "</VirtualHost>"
-    
     out_file = File.new("/etc/apache2/sites-available/prod.conf", "w")
     out_file.puts(prodFile)
     out_file.close
+    
     devFile = []
     devFile << "<VirtualHost *:80>"
     devFile << "    ServerName dev.25ati.com"
@@ -344,9 +342,11 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
     out_file = File.new("/etc/apache2/sites-available/dev.conf", "w")
     out_file.puts(devFile)
     out_file.close
+    
     Dir.mkdir('/var/www/html/qa.25ati.com') unless Dir.exist?('/var/www/html/qa.25ati.com')
     Dir.mkdir('/var/www/html/prod.25ati.com') unless Dir.exist?('/var/www/html/prod.25ati.com')
     Dir.mkdir('/var/www/html/dev.25ati.com') unless Dir.exist?('/var/www/html/dev.25ati.com')
+    
     qahtml = []
     qahtml << "	<html>"
     qahtml << "		<head>"
@@ -361,9 +361,11 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
     qahtml << "			RM331513 - Victor Fernandes </br>"
     qahtml << "		</body>"
     qahtml << "	</html>"
+    
     out_file = File.new("/var/www/html/qa.25ati.com/index.html", "w")
     out_file.puts(qahtml)
     out_file.close
+    
     prodhtml = []
     prodhtml << "	<html>"
     prodhtml << "		<head>"
@@ -378,9 +380,11 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
     prodhtml << "			RM331513 - Victor Fernandes </br>"
     prodhtml << "		</body>"
     prodhtml << "	</html>"
+    
     out_file = File.new("/var/www/html/prod.25ati.com/index.html", "w")
     out_file.puts(prodhtml)
     out_file.close
+    
     devhtml = []
     devhtml << "	<html>"
     devhtml << "		<head>"
@@ -395,12 +399,15 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
     devhtml << "			RM331513 - Victor Fernandes </br>"
     devhtml << "		</body>"
     devhtml << "	</html>"
+    
     out_file = File.new("/var/www/html/dev.25ati.com/index.html", "w")
     out_file.puts(devhtml)
     out_file.close
+    
     system("a2ensite qa.conf")
     system("a2ensite dev.conf")
     system("a2ensite prod.conf")
+    
     system("service apache2 restart")
 
 para salvar **Ctrl+O** e para sair **Ctrl+X**
