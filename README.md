@@ -312,7 +312,7 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
 
     qaFile = []
     qaFile << "<VirtualHost *:80>"
-        qaFile << "    ServerName qa.25ati.com"
+    qaFile << "    ServerName qa.25ati.com"
     qaFile << "    ServerAdmin webmaster@25ati.com"
     qaFile << "    DocumentRoot /var/www/html/qa.25ati.com"
     qaFile << "    LogLevel warn"
@@ -412,7 +412,7 @@ e Vamos alterar o arquivo com o **nano cookbooks/configApache/recipes/default.rb
 
 para salvar **Ctrl+O** e para sair **Ctrl+X**
 
-Essa receita baixa um codigo shell script desse git, aplica permissão e o executa, configurando o apache e criando virtualhosts e tambem criando as paginas html. 
+Essa receita cria os arquivos do virtual host configurando o apache e tambem criando as paginas html. 
 
 Depois Faremos upload com esse comando 
 
