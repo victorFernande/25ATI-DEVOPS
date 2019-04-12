@@ -26,55 +26,6 @@ Por padrão o SSH é atribuído a porta 22, acessaremos a Server pelo ip **10.0.
 
 ![putty22](/img/putty22.jpg)
 
-acessamos esse setup inicial por essa porta e vamos criar um arquivo **alteraSSH.sh**
-
-    touch alteraSSH.sh
-    
-O editor que iremos utilizar é o nano, para acessá-lo executamos 
-
-    nano alteraSSH.sh
-
-e preenche-lo com:
-
-    #!/bin/bash
-    read -r -p "Voce tem certeza que quer trocar a porta SSH? [Y/N]" response
-    if [[ $response == "y" || $response == "Y" ]]
-    then
-        sed -i 's/Port 22/Port 2269/g' /etc/ssh/sshd_config 
-        echo "SSH Trocada para: 2269."
-        sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config
-        sshPort=$( grep "Port" /etc/ssh/sshd_config | head -n 1 )
-        echo "Confirmando porta:  $sshPort"
-        read -p "Press [Enter] para Continuar ..."
-        /etc/init.d/ssh restart
-    else
-        sshPort=$(grep "Port" /etc/ssh/sshd_config  | head -n 1 )
-        echo "Porta Mantida em:  $sshPort"
-    fi
-
-para salvar **Ctrl+O** e para sair **Ctrl+X**
-
-e o Executaremos com:
-
-    chmod 700 ./alteraSSH.sh
-    sudo ./alteraSSH.sh 
-    
-Após isso, sua sessão ainda estara fechada na porta 22, para testar é necessário sair da sessão, se tentar conectar a porta **22** a conexão será recusada,
-
-![putty22error](/img/putty22error.jpg)
-
-então mudando a porta para **2269** a conexão funcionará.
-
-![putty2269](/img/putty2269.jpg)
-
-### 2.2 SSH Client
-Agora precisaremos fazer a configuração do **SSH**  tambem na **chefclient**, para adiantar o processo, executaremos o seguinte comando:
-
-    wget https://raw.githubusercontent.com/victorFernande/25ATI-DEVOPS/master/alteraSSH.sh
-    chmod 700 ./alteraSSH.sh
-    sudo ./alteraSSH.sh    
-
-
 ## 3. Instalação do ChefClient
 Após isso na VM **chefclient** executaremos o seguinte comando
 
