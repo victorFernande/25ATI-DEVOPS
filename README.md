@@ -203,7 +203,7 @@ E depois executando com:
 
     sudo chef-client --local-mode createUser.rb
    
-E para testar execute o seguinte comando:
+E para testar execute o seguinte comando: o Usuário será **ctobruno** e Senha **fiap**.
 
     su ctobruno -
    
