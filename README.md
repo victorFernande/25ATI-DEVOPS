@@ -398,7 +398,7 @@ Voltamos a maquina **ChefClient** e executamos o codigo de configuração e cria
  ![SetupVM](/img/setupVM.jpg)
  
  
-Para testar se as configurações estão corretas, usarei o windows da maquina host para acessar esses sites, mas primeiro é necessario alterar o arquivo de hosts da maquina, então 
+Para testar se as configurações estão corretas, usarei o windows da maquina host para acessar esses sites, mas primeiro é necessario alterar o arquivo de hosts da maquina para fazer os apontamentos DNS localmente, então 
  
  ![notepadAdmin](/img/notepadAdmin.jpg)
  
