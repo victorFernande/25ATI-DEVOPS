@@ -55,8 +55,6 @@ o output do comando deverá ser igual á:
 
 Apos isso testar conexão !
 
-![putty22](/img/putty2229.jpg)
-
 ## 3. Instalação do ChefServer
 Agora faremos o donwload na VM **chefserver** o pacote do chef server
 
