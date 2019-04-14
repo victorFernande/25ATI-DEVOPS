@@ -53,6 +53,9 @@ o output do comando deverá ser igual á:
     tcp6       0      0 :::2269                 :::*                    LISTEN      1711/sshd
     udp        0      0 0.0.0.0:68              0.0.0.0:*                           1037/dhclient
 
+Apos isso testar conexão !
+
+![putty22](/img/putty2229.jpg)
 
 ## 3. Instalação do ChefServer
 Agora faremos o donwload na VM **chefserver** o pacote do chef server
