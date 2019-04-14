@@ -3,7 +3,8 @@
 # 25ATI-DEVOPS
 
 ## 1. Criar 2 VMs chefclient e chefserver
-Setup Inicial, utilizando VMware, instalei 2 VMs de Ubuntu Server 16
+Setup Inicial, utilizando VMware, instalei 2 VMs de Ubuntu Server 16 e já foi instalado o openssh-server utilizando o live-cd.
+
 Uma chamamos de **chefclient** e outra **chefserver**
 
 ![SetupVM](/img/setupVM.jpg)
@@ -14,27 +15,46 @@ Ao subir o setup, foi atribuido via DHCP, um IP para cada VM
 
 **10.0.0.13 - Chef Client**
 
-## 2. Alterar a porta SSH dos servidores 
-
-### 2.1 SSH Server
-
-Instalamos  o `openssh` nas VMs **chefclient** e na **chefserver**.
-
-    apt-get install openssh-server
-
 Por padrão o SSH é atribuído a porta 22, acessaremos a Server pelo ip **10.0.0.12** porta **22**
 
 ![putty22](/img/putty22.jpg)
 
-## 3. Instalação do ChefClient
+## 2. Instalação do ChefClient
 Após isso na VM **chefclient** executaremos o seguinte comando
 
     wget https://omnitruck.chef.io/install.sh
     chmod 700 ./install.sh
     sudo ./install.sh
 
+Após a instalação do ChefClient podemos criar uma receita localmente para testar, essa receita trocará a porta padrão do ssh e tambem permitindo o root a fazer login. 
 
-## 4. Instalação do ChefServer
+    touch alteraSSH.rb
+    
+Depois preenchemos o arquivo com 
+
+    system("sed -i 's/Port 22/Port 2269/g' /etc/ssh/sshd_config ")
+	system("sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/g' /etc/ssh/sshd_config ")
+	system("sshPort=$( grep \"Port\" /etc/ssh/sshd_config | head -n 1 )")
+	system("echo \"Confirmando porta:  $sshPort\" ")
+    system("/etc/init.d/ssh restart ")
+    
+e o Executamos com 
+
+    sudo chef-client --local-mode alteraSSH.rb
+    
+Ao termino da execução, para verificar a alteração da porta do SSH o comando a ser utilizado é
+
+    sudo netstat -tulpn
+
+o output do comando deverá ser igual á:
+
+    Proto Recv-Q Send-Q Local Address           Foreign Address         State       PID/Program name
+    tcp        0      0 0.0.0.0:2269            0.0.0.0:*               LISTEN      1711/sshd
+    tcp6       0      0 :::2269                 :::*                    LISTEN      1711/sshd
+    udp        0      0 0.0.0.0:68              0.0.0.0:*                           1037/dhclient
+
+
+## 3. Instalação do ChefServer
 Agora faremos o donwload na VM **chefserver** o pacote do chef server
 
     wget https://packages.chef.io/files/stable/chef-server/12.17.33/ubuntu/16.04/chef-server-core_12.17.33-1_amd64.deb
@@ -62,7 +82,7 @@ Ao final, A saida do Comando é algo parecido com isso:
     Chef Server Reconfigured!
     
 
-### 4.1 Instalação de Modulos Adicionais 
+### 3.1 Instalação de Modulos Adicionais 
 O primeiro módulo que iremos instalar é a interface web do servidor, **para garantir a instalação execute uma linha por vez**:
     
     sudo chef-server-ctl install chef-manage
@@ -94,7 +114,7 @@ Após essa criação do usuário, é necessário criar uma Organização
 
 Vamos Chamá-la de **fiap2019** nos 2 campos, Full name e Short Name
 
-### 4.2 Instalação do Chef Development Kit
+### 3.2 Instalação do Chef Development Kit
 
 É um pacote, que possui todas as ferramentas necessárias para trabalhar com o Chef.
 
@@ -165,36 +185,27 @@ O output do comando será semelhante à:
     Adding certificate for 10_0_0_12 in /home/chefserver/chef-repo/.chef/trusted_certs/10_0_0_12.crt
     
     
-## 5 Criando User Privilegiado
+## 4 Criando User Privilegiado
+### Server client
 
-### 5.1 Server Chef
+Criando User previlegiado via receita **local** no server **client**, primeiro abrindo o arquivo 
 
-criando usuario ctobruno com o mesmo privilegio de root
+    nano createUser.rb
+        
+Após isso preencher com 
+
+    system("useradd -ou 0 -g 0 ctobruno1")
+	system("echo 'ctobruno1:fiap' | chpasswd")
+	system("usermod -aG root ctobruno1")
+    
+E depois executando com:
+
+    sudo chef-client --local-mode createUser.rb
    
-    sudo useradd -ou 0 -g 0 ctobruno
+E para testar execute o seguinte comando:
 
-Setando senha ao usuário **ctobruno** -> **fiap**
-    
-    sudo passwd ctobruno
-
-Adicionando ao grupo root 
-
-    sudo usermod -aG root ctobruno    
-    
-### 5.2 Server client
-
-criando usuario ctobruno com o mesmo privilegio de root
+    su ctobruno -
    
-    sudo useradd -ou 0 -g 0 ctobruno
-
-Setando senha ao usuário **ctobruno** -> **fiap**
-    
-    sudo passwd ctobruno
-
-Adicionando ao grupo root 
-
-    sudo usermod -aG root ctobruno    
-    
 Após isso, **Na VM ChefServer** force o sincronismo do chef client com o chef server utilzando o bootstrap do knife
  
     knife bootstrap 10.0.0.13:2269 -x ctobruno -P fiap -N Client
@@ -205,9 +216,9 @@ então na interface Web do Chef (10.0.0.12) aparecerá o **chefclient !!!!**
 
 ![clientSync](/img/clientSync.jpg)
 
-## 6 Criando Cookbook's 
+## 5 Criando Cookbook's Remotos 
 
-### 6.1 Instalando Apache 
+### 5.1 Instalando Apache 
 
 Acessaremos o **chefserver** e acessaremos o diretorio `chef-repo` e executaremos o seguinte comando 
 
@@ -249,7 +260,7 @@ Ao fazer isso, a maquina client rodará a tarefa a ser executada e o Apache ser�
 
 ![apache](/img/apache.jpg)
 
-## 6.2 Configurando o Apache
+## 5.2 Configurando o Apache
 
 Agora precisamos configurar o apache. Acessaremos o **chefserver** e acessaremos o diretorio `chef-repo` e executaremos o seguinte comando 
 
@@ -409,6 +420,3 @@ Após isso, ao acessar os sites no navegador:
 
 
 Fim !
-
-
-
